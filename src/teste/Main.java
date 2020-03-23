@@ -38,12 +38,12 @@ public class Main {
         String elevador="";
         String turno="";
         List <Predio>listaP = new ArrayList();
-        
         try {
             FileReader f = new FileReader("input.json");
             jsonArray = (JSONArray) parser.parse(f);
             Iterator<JSONObject> iterator = jsonArray.iterator();
             while (iterator.hasNext()) {
+                predio99 = new Predio();
                 JSONObject objt = iterator.next();
                 andar = objt.get("andar").toString();
                 predio99.setAndar(Integer.parseInt(andar));
@@ -54,8 +54,19 @@ public class Main {
                 
                 listaP.add(predio99);
             }
-            predio99.setLista(listaP);
-            System.out.println(predio99.getLista());
+             predio99.setLista(listaP);
+             System.out.println("Andar menos Utilizado" + predio99.andarMenosUtilizado());
+             System.out.println("Elevador mais frequentado" + predio99.elevadorMaisFrequentado());
+             System.out.println("Elevador menos frequentado" + predio99.elevadorMenosFrequentado());
+             System.out.println("Turno com maior fluxo de elevador mais frequentado " + predio99.periodoMaiorFluxoElevadorMaisFrequentado());
+             System.out.println("Turno com menor fluxo de elevador menos frequentado " + predio99.periodoMenorFluxoElevadorMenosFrequentado());
+             System.out.println("Periodo em que os elevadores são mais utilizados " + predio99.periodoMaiorUtilizacaoConjuntoElevadores());
+             System.out.println("Percentual Elevador A " + predio99.percentualDeUsoElevadorA()+"%");
+             System.out.println("Percentual Elevador B " + predio99.percentualDeUsoElevadorB()+"%");
+             System.out.println("Percentual Elevador C " + predio99.percentualDeUsoElevadorC()+"%");
+             System.out.println("Percentual Elevador D " + predio99.percentualDeUsoElevadorD()+"%");
+             System.out.println("Percentual Elevador E " + predio99.percentualDeUsoElevadorE()+"%");
+
         }catch (FileNotFoundException e) {
             e.printStackTrace();
         }catch (IOException e) {
@@ -63,5 +74,7 @@ public class Main {
         }catch (ParseException e) {
             e.printStackTrace();
         }
+        
+       
     }
 }
